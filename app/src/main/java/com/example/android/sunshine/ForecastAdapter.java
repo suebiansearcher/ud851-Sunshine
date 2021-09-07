@@ -16,7 +16,7 @@
 package com.example.android.sunshine;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,36 +24,48 @@ import android.widget.TextView;
 
 /**
  * {@link ForecastAdapter} exposes a list of weather forecasts to a
- * {@link android.support.v7.widget.RecyclerView}
+ * {@link RecyclerView}
  */
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder> {
 
     private String[] mWeatherData;
 
     // TODO (3) Create a final private ForecastAdapterOnClickHandler called mClickHandler
-
+    final private  ForecastAdapterOnClickHandler mClickHandler;
     // TODO (1) Add an interface called ForecastAdapterOnClickHandler
     // TODO (2) Within that interface, define a void method that access a String as a parameter
+    public interface ForecastAdapterOnClickHandler {
+        void onClick(String weatherForDay);
+    }
 
     // TODO (4) Add a ForecastAdapterOnClickHandler as a parameter to the constructor and store it in mClickHandler
-    public ForecastAdapter() {
-
+    public ForecastAdapter(ForecastAdapterOnClickHandler clickListener) {
+        mClickHandler = clickListener;
     }
 
     // TODO (5) Implement OnClickListener in the ForecastAdapterViewHolder class
     /**
      * Cache of the children views for a forecast list item.
      */
-    public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder {
+    public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final TextView mWeatherTextView;
 
         public ForecastAdapterViewHolder(View view) {
             super(view);
             mWeatherTextView = (TextView) view.findViewById(R.id.tv_weather_data);
             // TODO (7) Call setOnClickListener on the view passed into the constructor (use 'this' as the OnClickListener)
+            view.setOnClickListener(this);
         }
 
+
+
         // TODO (6) Override onClick, passing the clicked day's data to mClickHandler via its onClick method
+        @Override
+        public void onClick(View view) {
+            int adapterPosition = getBindingAdapterPosition();
+            String weatherForDay = mWeatherData[adapterPosition];
+            mClickHandler.onClick(weatherForDay);
+        }
     }
 
     /**
@@ -63,7 +75,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
      * @param viewGroup The ViewGroup that these ViewHolders are contained within.
      * @param viewType  If your RecyclerView has more than one type of item (which ours doesn't) you
      *                  can use this viewType integer to provide a different layout. See
-     *                  {@link android.support.v7.widget.RecyclerView.Adapter#getItemViewType(int)}
+     *                  {@link RecyclerView.Adapter#getItemViewType(int)}
      *                  for more details.
      * @return A new ForecastAdapterViewHolder that holds the View for each list item
      */
