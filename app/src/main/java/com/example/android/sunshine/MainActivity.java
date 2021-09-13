@@ -16,11 +16,12 @@
 package com.example.android.sunshine;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -120,8 +121,8 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         // TODO (1) Create a new Activity called DetailActivity using Android Studio's wizard
         // TODO (2) Change the root layout of activity_detail.xml to a FrameLayout and remove unnecessary xml attributes
         // TODO (3) Remove the Toast and launch the DetailActivity using an explicit Intent
-        Toast.makeText(context, weatherForDay, Toast.LENGTH_SHORT)
-                .show();
+        Intent detailIntent = new Intent(context, DetailActivity.class);
+        startActivity(detailIntent);
     }
 
     /**
