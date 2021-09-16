@@ -19,12 +19,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.loader.app.LoaderManager.LoaderCallbacks;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements
          * There are other LayoutManagers available to display your data in uniform grids,
          * staggered grids, and more! See the developer documentation for more details.
          */
-        int recyclerViewOrientation = LinearLayoutManager.VERTICAL;
+        int recyclerViewOrientation = RecyclerView.VERTICAL;
 
         /*
          *  This value should be true if you want to reverse your layout. Generally, this is only
